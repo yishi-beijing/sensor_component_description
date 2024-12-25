@@ -7,10 +7,10 @@
     <joint name="${name}_joint" type="fixed">
       <origin rpy="${roll} ${pitch} ${yaw}" xyz="${x} ${y} ${z}"/>
       <parent link="${parent}"/>
-      <child link="${name}_link"/>
+      <child link="${name}/camera_link"/>
     </joint>
 
-    <link name="${name}_link">
+    <link name="${name}/camera_link">
       <visual>
         <geometry>
           <box size="${sensor_box} ${sensor_box} ${sensor_box}"/>
@@ -41,12 +41,12 @@
     </link>
     <joint name="${name}_optical_joint" type="fixed">
       <origin rpy="${-pi/2} 0 ${-pi/2}" xyz="0 0 0"/>
-      <parent link="${name}_link"/>
-      <child link="${name}_optical_link"/>
+      <parent link="${name}/camera_link"/>
+      <child link="${name}"/>
     </joint>
-    <link name="${name}_optical_link"/>
+    <link name="${name}"/>
     <!-- camera -->
-    <gazebo reference="${name}_link">
+    <gazebo reference="${name}/camera_link">
       <material>Gazebo/Black</material>
       <sensor type="camera" name="${name}">
         <update_rate>${fps}</update_rate>
